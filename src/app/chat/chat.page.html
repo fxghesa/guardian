@@ -1,10 +1,40 @@
 <ion-header>
   <ion-toolbar>
-    <ion-icon name="log-out-outline"></ion-icon>
-    <ion-title>chat</ion-title>
+    <ion-title id="title">Chat</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="signOut()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row *ngFor="let chat of chats">
+      <ion-col size="9" class="chat" [offset]="chat.SenderId === currentUser.UserId ? 3 : 0"
+      [ngClass]="{ 'current-user-chat': (chat.SenderId === currentUser.UserId), 'other-user-chat': !(chat.SenderId === currentUser.UserId) }">
+        <b>{{chat.Name}}</b><br>
+        <span>{{chat.Chat}}</span><br>
+        <span class="time ion-text-right">
+          {{chat.CreateDate.toMillis() | date: 'short'}}
+        </span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="10">
+        <ion-textarea class="chat-input" autoGrow="true" rows="1" [(ngModel)]="chatToSend"></ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button [disabled]="chatToSend == null || chatToSend === ''" (click)="sendChat()">
+          <ion-icon name="send-sharp"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

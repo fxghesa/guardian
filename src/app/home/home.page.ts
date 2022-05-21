@@ -1,6 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService, USER } from 'src/services/data.service';
+import { DataService, IUSER } from 'src/services/data.service';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -9,7 +9,7 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  userList: USER[] = [];
+  userList: IUSER[] = [];
   selectedUserId: string = '';
 
   constructor(
@@ -19,16 +19,17 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dataService.getAllUsers().subscribe((result: any) => {
+    this.dataService.getAllUser().subscribe((result: any) => {
       if (result != null) {
-        this.userList = result as USER[];
+        this.userList = result as IUSER[];
       }
     });
   }
 
   onSelectedUser(): void {
     this.globalUser.UserId = this.selectedUserId;
-    this.router.navigate(['/tab/chat'])
+    this.globalUser.Name = this.userList.find(x => x.Id === this.selectedUserId).Name;
+    this.router.navigate(['/tab/chat']);
   }
 
 }
@@ -36,4 +37,5 @@ export class HomePage implements OnInit {
 @Injectable()
 export class GlobalUser {
   UserId: string;
+  Name: string;
 }
