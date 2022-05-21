@@ -1,0 +1,21 @@
+<ion-header id="title" [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Guardian
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <ion-label>Please select user</ion-label>
+    <ion-item>
+      <ion-select id="user-select" name="user-select" interface="popover" placeholder="Choose one" [(ngModel)]="selectedUserId" (ionChange)="onSelectedUser()" [disabled]="userList.length === 0">
+        <ion-select-option *ngFor="let user of userList" [value]="user.Id">
+          {{user.Name}}
+        </ion-select-option>
+      </ion-select>
+      <ion-spinner *ngIf="userList.length === 0" name="lines"></ion-spinner>
+    </ion-item>
+  </div>
+</ion-content>
