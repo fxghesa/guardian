@@ -2,14 +2,21 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+//color: https://colorhunt.co/palette/d3ebcdaedbce839aa8635666
+$color1: #D3EBCD;
+$color2: #AEDBCE;
+$color3: #839AA8;
+$color4: #635666;
+//optional color: https://coolors.co/1c0f13-6e7e85-b7cece-bbbac6-e2e2e2
+
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #839AA8;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary-shade: #635666;
+  --ion-color-primary-tint: #839AA8;
 
   /** secondary **/
   --ion-color-secondary: #3dc2ff;
@@ -227,10 +234,26 @@
 
     --ion-item-background: #1e1e1e;
 
-    --ion-toolbar-background: #1f1f1f;
+    --ion-toolbar-background: #AEDBCE;
 
     --ion-tab-bar-background: #1f1f1f;
 
     --ion-card-background: #1e1e1e;
   }
+}
+
+#title {
+  text-align: center;
+}
+
+//color
+ion-content{
+  --ion-background-color: #D3EBCD;
+}
+ion-toolbar {
+  --ion-toolbar-background: #AEDBCE;
+}
+ion-icon {
+  --ion-color: #D3EBCD;
+  --ion-toolbar-background: #AEDBCE;
 }
